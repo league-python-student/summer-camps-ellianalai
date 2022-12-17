@@ -14,7 +14,7 @@ def setup():
     # in the 'frog' variable.
     # frog = Frog(x, y, width, height)
     x = 30
-    y = 30
+    y = 400
     frog = Frog(x,y,30,30)
     
     # 5. Initialize the 'cars' variable to a list()
@@ -24,10 +24,17 @@ def setup():
     # and store it in a variable.
     # *HINT* if speed is negative it moves left!
     #car = Car(x, y, length, speed)
-    car = Car(50,50,30,20)
+    car = Car(50,250,100,9)
+    c = Car(50,325,30,5)
+    ar = Car(50,200,70,6)
+    a = Car(50,150,50,4)
+    
     # 7. Call the cars.append() method and add the car that was
     # made in the previous step
     cars.append(car)
+    cars.append(c)
+    cars.append(ar)
+    cars.append(a)
     
 def draw():
     global x, y
@@ -41,16 +48,17 @@ def draw():
     # keyPressed variable
     if keyPressed:    
         # 11. Use an if statement to check if the 'keyCode' variable is UP
-        if keyCode == UP:    
+        if keyCode == 38: 
             # 12. If key is UP, decrease the frog's y variable to move it up
-            y -= 1
+            frog.y -= 1
         # 13. Make if statements for the LEFT, RIGHT, and DOWN keys
-        if keyCode == DOWN:
-            y+= 1
-        if keyCode == LEFT:
-            x+= 1
-        if keyCode == RIGHT:
-            y-= 1
+        elif keyCode == 40:
+            frog.y+= 1
+        elif keyCode == 37:
+            frog.x-= 1
+        elif keyCode == 39:
+            frog.x+= 1
+
     
     # 14. Use a for loop to iterate through all the cars in the 'cars' list
     #for car in cars:
@@ -62,10 +70,11 @@ def draw():
         car.draw()
     
     # 17. Use a for loop to iterate through all the cars in the cars list
-    
+    for car in cars:
         # 18. Use an if statement and the is_collision(frog, car) function
         # defined below
-            
+        if is_collision(frog, car) == True:
+            noLoop()   
             # 19. If there's a collision, call the noLoop() function to
             # end the game
 
